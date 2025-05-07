@@ -20,14 +20,14 @@ class TeacherRepositoryTest {
     Teacher teacher;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         teacher = new Teacher("John Doe");
         teacherRepository.save(teacher);
         System.out.println(teacher);
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         teacherRepository.deleteById(teacher.getId());
     }
 
