@@ -28,6 +28,9 @@ class CourseRepositoryTest {
         courseRepository.deleteById("Algebra");
     }
 
+
+//    JPA Tests
+
     @Test
     public void findAll_courses_courseList() {
         List<Course> courseList = courseRepository.findAll();
@@ -74,6 +77,40 @@ class CourseRepositoryTest {
     @Test
     public void findAllByHoursLessThan_validHours_courseList() {
         List<Course> courseList = courseRepository.findAllByHoursLessThan(150);
+        System.out.println(courseList);
+        assertEquals(3, courseList.size());
+    }
+
+
+//    JPQL Tests
+
+    @Test
+    public void findAllWhereHours150_courses_courseList() {
+        List<Course> courseList = courseRepository.findAllWhereHours150();
+        System.out.println(courseList);
+        assertEquals(3, courseList.size());
+    }
+
+    @Test
+    public void findAllWhereClassroomAndHoursParams_courses_courseList() {
+        List<Course> courseList = courseRepository.findAllWhereClassroomAndHoursParams("B1", 150);
+        System.out.println(courseList);
+        assertEquals(3, courseList.size());
+    }
+
+
+//    NATIVE SQL Tests
+
+    @Test
+    public void nativeFindAllWhereHours150_courses_courseList() {
+        List<Course> courseList = courseRepository.nativeFindAllWhereHours150();
+        System.out.println(courseList);
+        assertEquals(3, courseList.size());
+    }
+
+    @Test
+    public void nativeFindAllWhereClassroomAndHoursParams_courses_courseList() {
+        List<Course> courseList = courseRepository.nativeFindAllWhereClassroomAndHoursParams("B1", 150);
         System.out.println(courseList);
         assertEquals(3, courseList.size());
     }
