@@ -58,7 +58,6 @@ public class CourseController {
     //  ****************************************************  PUT  ****************************************************
 
     @PutMapping("/courses/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Course updateCourse(@RequestBody @Valid Course course, @PathVariable String id) {
         return courseService.updateCourse(course, id);
     }

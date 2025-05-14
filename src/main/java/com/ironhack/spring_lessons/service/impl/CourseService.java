@@ -46,8 +46,7 @@ public class CourseService implements ICourseService {
     public Course updateCourse(Course course, String id) {
         Optional<Course> courseOptional = courseRepository.findById(id);
         if (courseOptional.isEmpty()) return null;
-        courseRepository.save(course);
-        return course;
+        return(courseRepository.save(course));
     }
 
     @Override
