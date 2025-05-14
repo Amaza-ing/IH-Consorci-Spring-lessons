@@ -1,5 +1,7 @@
 package com.ironhack.spring_lessons.controller.impl;
 
+import com.ironhack.spring_lessons.controller.dto.CourseClassroomDTO;
+import com.ironhack.spring_lessons.controller.dto.CourseHoursDTO;
 import com.ironhack.spring_lessons.model.Course;
 import com.ironhack.spring_lessons.repository.CourseRepository;
 import com.ironhack.spring_lessons.service.interfaces.ICourseService;
@@ -50,6 +52,30 @@ public class CourseController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCourse(@RequestBody @Valid Course course) {
         courseService.saveCourse(course);
+    }
+
+
+    //  ****************************************************  PUT  ****************************************************
+
+    @PutMapping("/courses/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Course updateCourse(@RequestBody @Valid Course course, @PathVariable String id) {
+        return courseService.updateCourse(course, id);
+    }
+
+
+    //  ***************************************************  PATCH  ***************************************************
+
+    @PatchMapping("/courses/hours/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCourseHours(@RequestBody @Valid CourseHoursDTO courseHoursDTO, @PathVariable String id) {
+        courseService.updateCourseHours(courseHoursDTO.getHours(), id);
+    }
+
+    @PatchMapping("/courses/classroom/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCourseClassroom(@RequestBody @Valid CourseClassroomDTO courseClassroomDTO, @PathVariable String id) {
+        courseService.updateCourseClassroom(courseClassroomDTO.getClassroom(), id);
     }
 
 
